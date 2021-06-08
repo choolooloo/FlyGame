@@ -36,7 +36,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	class UPhysicsThrusterComponent* ForwardThruster;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class USpringArmComponent* Arm;
 
 	UPROPERTY(VisibleAnywhere)
@@ -56,6 +56,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Init")
 	float TurnStrength = 500000.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Init")
+	float RotationSpeed = 1500.0f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -76,4 +80,7 @@ private:
 
 	UFUNCTION()
 	void Trun(float value);
+
+	TArray<UStaticMeshComponent*> PaddleList;
+	void RotatePaddle(float DeltaTime);
 };
